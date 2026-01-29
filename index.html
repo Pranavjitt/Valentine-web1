@@ -88,62 +88,8 @@
     <button id="no">nope lmao</button>
   </div>
 
-  <script>
-    let noClicks = 0;
 
-    const yesBtn = document.getElementById("yes");
-    const noBtn = document.getElementById("no");
-    const message = document.getElementById("message");
-    const cat = document.getElementById("cat");
-
-    const messages = [
-      "you meant YES right??",
-      "maybe your mouse slipped",
-      "ARE U SUREEE??",
-      "pleaseee",
-      "Pretty pleaseeeeeeeeeeee <333"
-    ];
-
-    const sadCats = [
-      "images/cat1.jpg",
-      "images/cat2.jpg",
-      "images/cat3.jpg",
-      "images/cat4.png",
-      "images/cat5.png"
-    ];
-
-    const happyCat = "images/cathappy.gif";
-
-    noBtn.addEventListener("click", () => {
-      noClicks++;
-
-      message.textContent = messages[noClicks - 1];
-
-      // Change sad cat
-      cat.style.opacity = "0";
-      setTimeout(() => {
-        cat.src = sadCats[Math.min(noClicks - 1, sadCats.length - 1)];
-        cat.style.opacity = "1";
-      }, 200);
-
-      // Shrink NO
-      noBtn.style.transform = `scale(${1 - noClicks * 0.2})`;
-
-      // Grow YES
-      yesBtn.style.transform = `scale(${1 + noClicks * 0.3})`;
-
-      if (noClicks >= 5) {
-        noBtn.style.opacity = "0";
-        noBtn.style.pointerEvents = "none";
-      }
-    });
-
-    yesBtn.addEventListener("click", () => {
-      message.textContent = "YAYYYY 💕 I KNEW IT!!!";
-      cat.src = happyCat;
-      noBtn.style.opacity = "0";
-    });
-  </script>
 
 </body>
 </html>
+
