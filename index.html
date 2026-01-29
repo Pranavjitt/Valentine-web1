@@ -88,8 +88,74 @@
     <button id="no">nope lmao</button>
   </div>
 
+  <!-- ✅ JAVASCRIPT (THIS WAS MISSING) -->
+  <script>
+    document.addEventListener("DOMContentLoaded", () => {
 
+      let noClicks = 0;
+
+      const yesBtn = document.getElementById("yes");
+      const noBtn = document.getElementById("no");
+      const message = document.getElementById("message");
+      const cat = document.getElementById("cat");
+
+      const messages = [
+        "you meant YES right??",
+        "maybe your mouse slipped",
+        "ARE U SUREEE??",
+        "pleaseee",
+        "Pretty pleaseeeeeeeeeeee <333"
+      ];
+
+      const sadCats = [
+        "images/sad1.jpg",
+        "images/sad2.jpg",
+        "images/sad3.jpg",
+        "images/sad4.jpg",
+        "images/sad5.jpg"
+      ];
+
+      const happyCat = "images/happy.gif";
+
+      // NO button logic
+      noBtn.addEventListener("click", () => {
+        if (noClicks >= 5) return;
+
+        noClicks++;
+        message.textContent = messages[noClicks - 1];
+
+        cat.style.opacity = "0";
+        setTimeout(() => {
+          cat.src = sadCats[Math.min(noClicks - 1, sadCats.length - 1)];
+          cat.style.opacity = "1";
+        }, 200);
+
+        noBtn.style.transform = `scale(${1 - noClicks * 0.2})`;
+        yesBtn.style.transform = `scale(${1 + noClicks * 0.3})`;
+
+        if (noClicks === 5) {
+          noBtn.style.opacity = "0";
+          noBtn.style.pointerEvents = "none";
+        }
+      });
+
+      // YES button logic
+      yesBtn.addEventListener("click", () => {
+        message.textContent = "YAYYYY 💕 I KNEW IT!!!";
+
+        cat.style.opacity = "0";
+        setTimeout(() => {
+          cat.src = happyCat;
+          cat.style.opacity = "1";
+        }, 200);
+
+        noBtn.style.opacity = "0";
+        noBtn.style.pointerEvents = "none";
+        yesBtn.style.transform = "scale(1.5)";
+      });
+
+    });
+  </script>
 
 </body>
 </html>
-
