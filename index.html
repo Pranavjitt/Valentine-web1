@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <!-- Google Font -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Playwrite+GB+J+Guides&display=swap" rel="stylesheet">
+
+  <title>Will you be my valentine ria??????</title>
+
+  <style>
+    body {
+      height: 100vh;
+      margin: 0;
+      background: #ffe6e6;
+      font-family: 'Playwrite GB J Guides', cursive;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+
+    h1 {
+      margin-top: 60px;
+      font-size: 48px;
+      color: #d60047;
+      text-align: center;
+    }
+
+    #cat {
+      margin-top: 30px;
+      width: 280px;
+      height: 280px;
+      object-fit: cover;
+      border-radius: 20px;
+      transition: opacity 0.3s ease;
+    }
+
+    #message {
+      margin-top: 25px;
+      font-size: 26px;
+      color: #b0003a;
+      min-height: 40px;
+      text-align: center;
+    }
+
+    .buttons {
+      margin-top: auto;
+      margin-bottom: 70px;
+      display: flex;
+      gap: 40px;
+    }
+
+    button {
+      padding: 20px 40px;
+      font-size: 24px;
+      border: none;
+      border-radius: 12px;
+      cursor: pointer;
+      transition: transform 0.3s ease, opacity 0.3s ease;
+    }
+
+    #yes {
+      background-color: #ff4d6d;
+      color: white;
+    }
+
+    #no {
+      background-color: #999;
+      color: white;
+    }
+  </style>
+</head>
+
+<body>
+
+  <h1>Will you be my valentine ria??????</h1>
+
+  <!-- Cat image -->
+  <img id="cat" src="images/confused.gif" alt="cat">
+
+  <div id="message"></div>
+
+  <div class="buttons">
+    <button id="yes">YESSS!</button>
+    <button id="no">nope lmao</button>
+  </div>
+
+  <script>
+    let noClicks = 0;
+
+    const yesBtn = document.getElementById("yes");
+    const noBtn = document.getElementById("no");
+    const message = document.getElementById("message");
+    const cat = document.getElementById("cat");
+
+    const messages = [
+      "you meant YES right??",
+      "maybe your mouse slipped",
+      "ARE U SUREEE??",
+      "pleaseee",
+      "Pretty pleaseeeeeeeeeeee <333"
+    ];
+
+    const sadCats = [
+      "images/cat1.jpg",
+      "images/cat2.jpg",
+      "images/cat3.jpg",
+      "images/cat4.png",
+      "images/cat5.png"
+    ];
+
+    const happyCat = "images/cathappy.gif";
+
+    noBtn.addEventListener("click", () => {
+      noClicks++;
+
+      message.textContent = messages[noClicks - 1];
+
+      // Change sad cat
+      cat.style.opacity = "0";
+      setTimeout(() => {
+        cat.src = sadCats[Math.min(noClicks - 1, sadCats.length - 1)];
+        cat.style.opacity = "1";
+      }, 200);
+
+      // Shrink NO
+      noBtn.style.transform = `scale(${1 - noClicks * 0.2})`;
+
+      // Grow YES
+      yesBtn.style.transform = `scale(${1 + noClicks * 0.3})`;
+
+      if (noClicks >= 5) {
+        noBtn.style.opacity = "0";
+        noBtn.style.pointerEvents = "none";
+      }
+    });
+
+    yesBtn.addEventListener("click", () => {
+      message.textContent = "YAYYYY 💕 I KNEW IT!!!";
+      cat.src = happyCat;
+      noBtn.style.opacity = "0";
+    });
+  </script>
+
+</body>
+</html>
